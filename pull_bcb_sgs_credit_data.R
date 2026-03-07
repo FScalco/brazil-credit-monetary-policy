@@ -17,6 +17,11 @@ suppressPackageStartupMessages({
   library(rbcb)
 })
 
+# Testing a chang4e in the code to trigger a new commit, again
+# Testing a chang4e in the code to trigger a new commit, again
+# Testing a chang4e in the code to trigger a new commit, again
+
+
 # -----------------------------
 # 1) Define series and metadata
 # -----------------------------
