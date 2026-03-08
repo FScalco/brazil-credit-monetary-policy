@@ -47,3 +47,24 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# R / RStudio
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Project outputs
+output/
+figures/
+data-raw/
+tmp/
+temp/
+
+# Downloaded web pages / scratch files
+*.html
+*.pdf
+
+# OS/editor clutter
+.DS_Store
+Thumbs.db
