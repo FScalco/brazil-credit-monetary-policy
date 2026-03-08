@@ -306,33 +306,24 @@ kfw_annual_raw <- tibble::tribble(
 
 
 
-# BNDES annual official series selected from monthly official open-data CSV.
-# We aggregate monthly disbursements to annual disbursements (FLOW).
-bndes_monthly_csv <- paste0(
-  "https://dadosabertos.bndes.gov.br/dataset/",
-  "102e89ec-836a-4ae0-acc7-74ac2a804c1c/resource/",
-  "179950b8-b504-4cc7-b0db-9c9eed99e9ba/download/desembolsos-mensais.csv"
+# BNDES annual disbursements (FLOW), read from a preprocessed local file.
+bndes_annual_file <- "data/bndes_annual.csv"
+
+if (!file.exists(bndes_annual_file)) {
+  stop(
+    paste(
+      "Missing preprocessed BNDES file:", bndes_annual_file,
+      "\nRun the preprocessing script first."
+    )
+  )
+}
+
+bndes_annual <- readr::read_csv(
+  file = bndes_annual_file,
+  show_col_types = FALSE
 )
 
-bndes_monthly_raw <- readr::read_delim(
-  file = bndes_monthly_csv,
-  delim = ";",
-  show_col_types = FALSE,
-  progress = FALSE
-) |>
-  janitor::clean_names()
 
-bndes_annual <- bndes_monthly_raw |>
-  dplyr::transmute(
-    year = as.integer(ano),
-    disbursement_brl = parse_ptbr_number(desembolsos_reais)
-  ) |>
-  dplyr::filter(!is.na(year), !is.na(disbursement_brl)) |>
-  dplyr::group_by(year) |>
-  dplyr::summarise(
-    bndes_disbursement_brl = sum(disbursement_brl, na.rm = TRUE),
-    .groups = "drop"
-  )
 
 # --------------------------------------
 # 6) Data cleaning and harmonization
