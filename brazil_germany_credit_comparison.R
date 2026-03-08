@@ -34,7 +34,7 @@ required_packages <- c(
   "httr2",
   "jsonlite",
   "readr",
-  "glue",
+  "glue"
 )
 
 safe_install_package <- function(pkg) {
