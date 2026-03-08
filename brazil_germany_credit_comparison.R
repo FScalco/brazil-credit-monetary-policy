@@ -307,7 +307,7 @@ kfw_annual_raw <- tibble::tribble(
 
 
 # BNDES annual disbursements (FLOW), read from a preprocessed local file.
-bndes_annual_file <- "data/bndes_annual.csv"
+bndes_annual_file <- "bndes_annual.csv"
 
 if (!file.exists(bndes_annual_file)) {
   stop(
@@ -501,6 +501,24 @@ figure_2 <- fig2_data |>
   ) +
   plot_theme()
 
+
+
+print(figure_1)
+print(figure_2)
+
+if (save_plots) {
+  ggplot2::ggsave(
+    filename = file.path(output_dir, "figure_1_brazil_directed_credit.png"),
+    plot = figure_1,
+    width = 11, height = 8, dpi = 300
+  )
+  
+  ggplot2::ggsave(
+    filename = file.path(output_dir, "figure_2_bndes_vs_kfw.png"),
+    plot = figure_2,
+    width = 11, height = 6, dpi = 300
+  )
+}
 
 # ---------------------
 # 10) DATA CAVEATS
