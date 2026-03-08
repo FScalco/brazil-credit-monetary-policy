@@ -68,3 +68,5 @@ temp/
 # OS/editor clutter
 .DS_Store
 Thumbs.db
+bbk_sample.csv
+bndes_desembolsos_mensais.csv
